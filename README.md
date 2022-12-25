@@ -11,4 +11,4 @@
 <br/>
 
 ### E-R 다이어그램
-[coopang_play_ERD.pdf](https://github.com/HaewoongGit/Coupang-Play-Database/files/10299583/coopang_play_ERD.pdf)
+![ERdiagram](https://user-images.githubusercontent.com/107612118/209461131-86a99a4c-523a-4b5a-a102-e1dbd1d4ea0a.png)
