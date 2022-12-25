@@ -5,7 +5,6 @@
 <br/>
 
 ### 사용 데이터베이스
-Mysql
 ![다운로드](https://user-images.githubusercontent.com/107612118/209460915-80303582-a5ee-422f-890e-7fdeb49f991b.png)
 <br/>
 <br/>
