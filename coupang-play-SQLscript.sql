@@ -8,19 +8,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema coopang_play
+-- Schema coupang_play
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema coopang_play
+-- Schema coupang_play
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `coopang_play` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
-USE `coopang_play` ;
+CREATE SCHEMA IF NOT EXISTS `coupang_play` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+USE `coupang_play` ;
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`actor`
+-- Table `coupang_play`.`actor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`actor` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`actor` (
   `actor_id` VARCHAR(20) NOT NULL,
   `kr_name` VARCHAR(45) NULL DEFAULT NULL,
   `eng_name` VARCHAR(45) NULL DEFAULT NULL,
@@ -32,9 +32,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`work`
+-- Table `coupang_play`.`work`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`work` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`work` (
   `work_id` VARCHAR(45) NOT NULL,
   `work_name` VARCHAR(45) NULL DEFAULT NULL,
   `work_name_eng` VARCHAR(45) NULL DEFAULT NULL,
@@ -50,9 +50,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`appear`
+-- Table `coupang_play`.`appear`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`appear` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`appear` (
   `appear_id` VARCHAR(30) NOT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
   `actor_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -61,19 +61,19 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`appear` (
   INDEX `fk_appear_work_id_idx` (`work_id` ASC) VISIBLE,
   CONSTRAINT `fk_appear_actor_id`
     FOREIGN KEY (`actor_id`)
-    REFERENCES `coopang_play`.`actor` (`actor_id`),
+    REFERENCES `coupang_play`.`actor` (`actor_id`),
   CONSTRAINT `fk_appear_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`category`
+-- Table `coupang_play`.`category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`category` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`category` (
   `category_id` VARCHAR(45) NOT NULL,
   `category_name` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`category_id`))
@@ -83,9 +83,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`genre`
+-- Table `coupang_play`.`genre`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`genre` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`genre` (
   `genre_id` VARCHAR(45) NOT NULL,
   `genre_name` VARCHAR(45) NULL DEFAULT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -93,16 +93,16 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`genre` (
   INDEX `fk_work_id_idx` (`work_id` ASC) VISIBLE,
   CONSTRAINT `fk_genre_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`user`
+-- Table `coupang_play`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`user` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`user` (
   `user_id` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NULL DEFAULT NULL,
   `id` VARCHAR(45) NULL DEFAULT NULL,
@@ -117,9 +117,9 @@ COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`like_contents`
+-- Table `coupang_play`.`like_contents`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`like_contents` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`like_contents` (
   `like_contents_id` VARCHAR(45) NOT NULL,
   `user_id` VARCHAR(45) NULL DEFAULT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -128,19 +128,19 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`like_contents` (
   INDEX `fk_work_id_idx` (`work_id` ASC) VISIBLE,
   CONSTRAINT `fk_like_contents_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `coopang_play`.`user` (`user_id`),
+    REFERENCES `coupang_play`.`user` (`user_id`),
   CONSTRAINT `fk_like_contents_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`media`
+-- Table `coupang_play`.`media`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`media` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`media` (
   `media_id` VARCHAR(45) NOT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
   `episode` INT NULL DEFAULT NULL,
@@ -150,16 +150,16 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`media` (
   INDEX `fk_work_id_idx` (`work_id` ASC) VISIBLE,
   CONSTRAINT `fk_media_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`reveiw`
+-- Table `coupang_play`.`reveiw`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`reveiw` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`reveiw` (
   `reveiw_id` VARCHAR(45) NOT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
   `user_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -169,19 +169,19 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`reveiw` (
   INDEX `fk_user_id_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_review_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `coopang_play`.`user` (`user_id`),
+    REFERENCES `coupang_play`.`user` (`user_id`),
   CONSTRAINT `fk_review_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`score`
+-- Table `coupang_play`.`score`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`score` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`score` (
   `score_id` VARCHAR(45) NOT NULL,
   `score` INT NULL DEFAULT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -191,19 +191,19 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`score` (
   INDEX `fk_score_work_id_idx` (`work_id` ASC) VISIBLE,
   CONSTRAINT `fk_score_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `coopang_play`.`user` (`user_id`),
+    REFERENCES `coupang_play`.`user` (`user_id`),
   CONSTRAINT `fk_score_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`watching_content`
+-- Table `coupang_play`.`watching_content`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`watching_content` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`watching_content` (
   `watching_content_id` VARCHAR(45) NOT NULL,
   `user_id` VARCHAR(45) NULL DEFAULT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -215,22 +215,22 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`watching_content` (
   INDEX `kf_media_id_idx` (`media_id` ASC) VISIBLE,
   CONSTRAINT `fk_watching_content_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `coopang_play`.`user` (`user_id`),
+    REFERENCES `coupang_play`.`user` (`user_id`),
   CONSTRAINT `fk_watching_content_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`),
+    REFERENCES `coupang_play`.`work` (`work_id`),
   CONSTRAINT `kf_watching_content_media_id`
     FOREIGN KEY (`media_id`)
-    REFERENCES `coopang_play`.`media` (`media_id`))
+    REFERENCES `coupang_play`.`media` (`media_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`watching_history`
+-- Table `coupang_play`.`watching_history`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`watching_history` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`watching_history` (
   `watching_history_id` VARCHAR(45) NOT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
   `category_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -242,22 +242,22 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`watching_history` (
   INDEX `fk_genre_id_idx` (`genre_id` ASC) VISIBLE,
   CONSTRAINT `fk_watching_history_category_id`
     FOREIGN KEY (`category_id`)
-    REFERENCES `coopang_play`.`category` (`category_id`),
+    REFERENCES `coupang_play`.`category` (`category_id`),
   CONSTRAINT `fk_watching_history_genre_id`
     FOREIGN KEY (`genre_id`)
-    REFERENCES `coopang_play`.`genre` (`genre_id`),
+    REFERENCES `coupang_play`.`genre` (`genre_id`),
   CONSTRAINT `fk_watching_history_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `coopang_play`.`work_category`
+-- Table `coupang_play`.`work_category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `coopang_play`.`work_category` (
+CREATE TABLE IF NOT EXISTS `coupang_play`.`work_category` (
   `work_category` VARCHAR(45) NOT NULL,
   `category_id` VARCHAR(45) NULL DEFAULT NULL,
   `work_id` VARCHAR(45) NULL DEFAULT NULL,
@@ -266,10 +266,10 @@ CREATE TABLE IF NOT EXISTS `coopang_play`.`work_category` (
   INDEX `fk_work_id_idx` (`work_id` ASC) VISIBLE,
   CONSTRAINT `fk_work_category_category_id`
     FOREIGN KEY (`category_id`)
-    REFERENCES `coopang_play`.`category` (`category_id`),
+    REFERENCES `coupang_play`.`category` (`category_id`),
   CONSTRAINT `fk_work_category_work_id`
     FOREIGN KEY (`work_id`)
-    REFERENCES `coopang_play`.`work` (`work_id`))
+    REFERENCES `coupang_play`.`work` (`work_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
